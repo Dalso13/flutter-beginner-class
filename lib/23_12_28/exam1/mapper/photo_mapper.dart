@@ -2,7 +2,7 @@ import 'package:flutter_beginner_class/23_12_28/exam1/dto/photo.dart';
 import 'package:flutter_beginner_class/23_12_28/exam1/model/photo_model.dart';
 
 extension PhotoMapper on Photo {
-  PhotoModle toAlbum() {
+  PhotoModle toPhoto() {
     return PhotoModle(
         id: id ?? 0,
         albumId: albumId ?? 0,
