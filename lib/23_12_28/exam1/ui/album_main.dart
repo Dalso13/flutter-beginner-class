@@ -28,7 +28,7 @@ class AlbumMain extends StatelessWidget {
                         children:
                             snapshot.data!.map((e) => TextButton(
                               onPressed: () {
-                                context.go(Uri(
+                                context.push(Uri(
                                   path: "/photoList",
                                   queryParameters: {'albumId' : '${e.id}'}
                                 ).toString());

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_beginner_class/23_12_28/exam1/repository/photo_repository.dart';
+import 'package:go_router/go_router.dart';
 
 class PhotoMain extends StatefulWidget {
   int _albumId;
@@ -32,13 +35,18 @@ class _PhotoMainState extends State<PhotoMain> {
                         mainAxisSpacing: 30,
                         crossAxisCount: 2,
                         children: snapshot.data!
-                            .map((e) => TextButton(
-                                  onPressed: () {},
-                                  child: Column(
-                                    children: [
-                                      Image.network(e.thumbnailUrl),
-                                      Text('${e.albumId} & ${e.title}')
-                                    ],
+                            .map((e) => InkWell(
+                                  onTap: () {
+                                    context.go(
+                                      Uri(
+                                        path: '/photoDetail',
+                                        queryParameters: {'photo' : jsonEncode(e.toJson())}
+                                      ).toString()
+                                    );
+                                  },
+                                  child: Hero(
+                                    child: Image.network(e.thumbnailUrl , fit: BoxFit.cover),
+                                    tag: '${e.id}',
                                   ),
                                 ))
                             .toList()),
